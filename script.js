@@ -21,8 +21,8 @@ const checkIfLose = (guess) => {
     // document.querySelector('.score').textContent = score
     displayMessage('.score', score)
     ) : (
-      document.querySelector('.message').textContent = "YOU LOSE 🥱" ,
-      document.querySelector('.score').textContent = 0
+      displayMessage('.message', "YOU LOSE 🥱"),
+      displayMessage('.score', 0)
     )
 }
 
@@ -31,19 +31,19 @@ document.querySelector('.check').addEventListener('click', function () {
 
   // When there is no number input
   if (!guess) {
-    document.querySelector('.message').textContent = "🚫 No Number!";
+    displayMessage('.message', "🚫 No Number!");
 
 
     // When the answer is correct
   } else if (guess === answer) {
-    document.querySelector('.message').textContent = "YOU WIN 🎊";
-    document.querySelector('.number').textContent = answer;
+    displayMessage('.message', "YOU WIN 🎊");
+    displayMessage('.number', answer);
     
     document.querySelector('body').style.backgroundColor = '#60b347';
     document.querySelector('.number').style.width = '30rem';
     score > highscore ? (
       highscore = score,
-      document.querySelector('.highscore').textContent = highscore
+      displayMessage('.highscore', highscore)
       ) : null
 
     // When guess is incorrect
@@ -55,9 +55,9 @@ document.querySelector('.check').addEventListener('click', function () {
 document.querySelector('.again').addEventListener('click', function() {
   score = 20;
   answer = Math.trunc(Math.random()*20) + 1;
-  document.querySelector('.message').textContent = "Start guessing..."
-  document.querySelector('.score').textContent = score;
-  document.querySelector('.number').textContent = "?";
+  displayMessage('.message', "Start guessing...");
+  displayMessage('.score', score);
+  displayMessage('.number', "?");
   document.querySelector('.guess').value = '';
 
   document.querySelector('body').style.backgroundColor = "#222"
