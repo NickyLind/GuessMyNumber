@@ -12,10 +12,20 @@ let score = 20;
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
 
+  // When there is no number input
   if (!guess) {
-    document.querySelector('.message').textContent = "🚫 No Number!"
+    document.querySelector('.message').textContent = "🚫 No Number!";
+
+
+    // When the answer is correct
   } else if (guess === answer) {
-    document.querySelector('.message').textContent = "YOU WIN 🎊"
+    document.querySelector('.message').textContent = "YOU WIN 🎊";
+
+    document.querySelector('body').style.backgroundColor = '#60b347';
+    document.querySelector('.number').style.width = '30rem';
+    
+
+    // When guess is too low
   } else if (guess < answer) {
     score > 1 ? (
       document.querySelector('.message').textContent = "⏬Guess was too low",
@@ -25,6 +35,8 @@ document.querySelector('.check').addEventListener('click', function () {
         document.querySelector('.message').textContent = "YOU LOSE 🥱" ,
         document.querySelector('.score').textContent = 0
       )
+
+      // When guess is too high
   } else {
     score > 1 ? (
       document.querySelector('.message').textContent = "⏫Guess was too high",
