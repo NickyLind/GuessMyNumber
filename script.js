@@ -10,6 +10,22 @@ let highscore = 0;
 //?NOTE an event is something that happens on the page EX) mouse click, mouse moving, key press, button press. 
 //?NOTE an event listener is when we wait for an event to happen and then react to it
 
+const displayMessage = (DOMString, arr) => {
+  return document.querySelector(DOMString).textContent = arr
+}
+
+const checkIfLose = (guess) => {
+  score > 1 ? (
+    (document.querySelector('.message').textContent = guess < answer ? "⏬Guess was too low" : "⏫Guess was too high"),
+    score-- ,
+    // document.querySelector('.score').textContent = score
+    displayMessage('.score', score)
+    ) : (
+      document.querySelector('.message').textContent = "YOU LOSE 🥱" ,
+      document.querySelector('.score').textContent = 0
+    )
+}
+
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
 
@@ -30,27 +46,9 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.highscore').textContent = highscore
       ) : null
 
-    // When guess is too low
-  } else if (guess < answer) {
-    score > 1 ? (
-      document.querySelector('.message').textContent = "⏬Guess was too low",
-      score-- ,
-      document.querySelector('.score').textContent = score
-      ) : (
-        document.querySelector('.message').textContent = "YOU LOSE 🥱" ,
-        document.querySelector('.score').textContent = 0
-      )
-
-      // When guess is too high
-  } else {
-    score > 1 ? (
-      document.querySelector('.message').textContent = "⏫Guess was too high",
-      score--,
-      document.querySelector('.score').textContent = score
-    ) : (
-      document.querySelector('.message').textContent = "YOU LOSE 🥱" ,
-      document.querySelector('.score').textContent = 0
-    )
+    // When guess is incorrect
+  } else if (guess !== answer) {
+    checkIfLose(guess);
   }
 });
 
