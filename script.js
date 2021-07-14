@@ -1,10 +1,11 @@
 'use strict';
 
 
-let answer = Math.trunc(Math.random()*20) + 1
 document.querySelector('.number').textContent = "?"
 
+let answer = Math.trunc(Math.random()*20) + 1
 let score = 20;
+let highscore = 0;
 
 //?NOTE an event is something that happens on the page EX) mouse click, mouse moving, key press, button press. 
 //?NOTE an event listener is when we wait for an event to happen and then react to it
@@ -21,10 +22,13 @@ document.querySelector('.check').addEventListener('click', function () {
   } else if (guess === answer) {
     document.querySelector('.message').textContent = "YOU WIN 🎊";
     document.querySelector('.number').textContent = answer;
-
+    
     document.querySelector('body').style.backgroundColor = '#60b347';
     document.querySelector('.number').style.width = '30rem';
-
+    score > highscore ? (
+      highscore = score,
+      document.querySelector('.highscore').textContent = highscore
+      ) : null
 
     // When guess is too low
   } else if (guess < answer) {
